@@ -14,21 +14,11 @@ app.set("views", "./views");
 app.use(express.static("public"));
 const PORT = 5555;
 
-
-
-
 app.use("/",categoriesController);
-
 app.use("/",articlesController);
-
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-
-
-
-
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
