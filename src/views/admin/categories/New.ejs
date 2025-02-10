@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guia Perguntas</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-6">
+        <div class="card shadow-sm" id="formulario-pergunta">
+            <div class="card-header bg-primary text-white">
+                <h3><i class="fas fa-paper-plane"></i> Categoria</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="create">
+                    <!-- Campo para o título da pergunta -->
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título"
+                                required>
+                        </div>
+                    </div>
+                    <!-- Botão de envio -->
+                    <button type="submit" class="btn btn-success btn-lg btn-block">
+                        <i class="fas fa-paper-plane"></i> Gravar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts do Bootstrap e dependências -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
