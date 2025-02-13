@@ -1,0 +1,52 @@
+<body class="bg-light">
+    <%- include('../../partials/header.ejs') %>
+    <%- include('../../partials/navbar.ejs') %>
+    
+    <div class="container mt-6">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <a href="/admin/categories/New" class="btn btn-primary btn-sm mb-3">Nova Categoria</a>
+                
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>CATEGORIAS</h3>
+                    </div>
+                    
+                    <div class="card-body">
+                        <table class="table table-bordered text-center">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Categorias</th>
+                                    <th>Data de Cadastro</th>
+                                    <th>Slug</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% categories.forEach(category => { %>
+                                    <tr>
+                                        <td><%= category.titulo %></td>
+                                        <td><%= new Date(category.dtcadastro).toLocaleDateString('pt-BR') %></td>
+                                        <td><%= category.slug %></td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <form method="POST" action="/categories/edit/<%= category.id %>">
+                                                    <button type="submit" class="btn btn-primary btn-sm">Editar</button>
+                                                </form>
+                                                <form method="POST" action="/categories/delete/<%= category.id %>">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../../partials/footer.ejs') %>
+</body>

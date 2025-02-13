@@ -10,7 +10,11 @@ const Categoria = coneciton.define('categorias', {
     slug: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    dtcadastro: {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
 });  
 
 /*

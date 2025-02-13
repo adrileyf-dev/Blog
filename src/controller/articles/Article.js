@@ -15,6 +15,8 @@ const Articles = coneciton.define('artcles', {
         type: Sequelize.TEXT,
         allowNull: false
     },
+   
+
 });  
 
 Categoria.hasMany(Articles); // Relacionamento 1 para N
