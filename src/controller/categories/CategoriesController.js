@@ -11,6 +11,7 @@ router.get("/admin/categories/New", (req, res) => {
 router.get("/categories", (req, res) => {
   res.render("admin/categories/New");
 });
+
 router.post("/categories/save", (req, res) => {
   var titulo = req.body.titulo;
   var dtcadastro = req.body.dtcadastro;
@@ -34,8 +35,6 @@ router.get("/admin/categories", (req, res) => {
 
 router.post("/categories/delete/:id", (req, res) => {
   var id = req.params.id;
-  console.log(id);
-
   if (id != undefined) {
     if (!isNaN(id)) {
       Categoria.destroy({
@@ -53,6 +52,38 @@ router.post("/categories/delete/:id", (req, res) => {
     res.redirect("/admin/categories");
   }
 });
-module.exports = router;
-// Compare this snippet from app.js: 
 
+router.get("/admin/categories/edit/:id", (req, res) => {
+  var id = req.params.id; 
+  Categoria.findByPk(id).then(categories => {
+    
+    if (categories != undefined) {
+      res.render("admin/categories/edit", { categories: categories });
+    } else {
+     // res.redirect("/admin/categories");
+    }
+  }).catch(error => {
+   /// res.redirect("/admin/categories");
+  });
+});
+
+router.post("/categories/update/:id", (req, res) => {
+  var id = req.params.id; 
+  var titulo = req.body.titulo;
+  var dtcadastro = req.body.dtcadastro;
+ 
+  
+
+  Categoria.update({ titulo: titulo, slug: slugify(titulo, { lower: true }),dtcadastro:dtcadastro }, {
+    where: {
+      id: id
+    }
+  }).then(() => {
+    res.redirect("/admin/categories");
+  }).catch(error => {
+    res.redirect("/admin/categories");
+  }); 
+});
+
+
+module.exports = router;
