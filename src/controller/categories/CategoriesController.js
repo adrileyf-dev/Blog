@@ -70,9 +70,7 @@ router.get("/admin/categories/edit/:id", (req, res) => {
 router.post("/categories/update/:id", (req, res) => {
   var id = req.params.id; 
   var titulo = req.body.titulo;
-  var dtcadastro = req.body.dtcadastro;
- 
-  
+  var dtcadastro = req.body.dtcadastro; 
 
   Categoria.update({ titulo: titulo, slug: slugify(titulo, { lower: true }),dtcadastro:dtcadastro }, {
     where: {

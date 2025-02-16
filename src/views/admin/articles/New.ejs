@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guia Perguntas</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+<%- include('..//..//partials/header.ejs') %>
+<%- include('..//..//partials/navbar.ejs') %>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>ARTIGOS</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/articles/save">
+                        <div class="form-group">
+                            <label for="firstName">ARTIGOS</label>
+                            <input type="text" class="form-control" id="artigo" name="descricao" placeholder="artigo">
+                        </div>   
+
+                        <div class="form-group">
+                            <label for="firstName">BODY</label>
+                            <textarea type="text" class="form-control" id="corpo" name="body" placeholder="Escreva o corpo do artigo"></textarea>
+                        </div>                         
+                        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <%- include('..//..//partials/footer.ejs') %>
+
+    <!-- Scripts do Bootstrap e dependências -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

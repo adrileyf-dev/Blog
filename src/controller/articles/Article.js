@@ -14,8 +14,7 @@ const Articles = coneciton.define('artcles', {
     body: {
         type: Sequelize.TEXT,
         allowNull: false
-    },
-   
+    },   
 
 });  
 
