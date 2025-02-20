@@ -17,12 +17,14 @@
 <%- include('..//..//partials/navbar.ejs') %>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
+                
                 <div class="card-header text-center">
                     <h3>ARTIGOS</h3>
                 </div>
                 <div class="card-body">
+                     
                     <form method="POST" action="/articles/save">
                         <div class="form-group">
                             <label for="firstName">ARTIGOS</label>
@@ -32,7 +34,17 @@
                         <div class="form-group">
                             <label for="firstName">BODY</label>
                             <textarea type="text" class="form-control" id="corpo" name="body" placeholder="Escreva o corpo do artigo"></textarea>
-                        </div>                         
+                        </div>       
+                        
+                        <section class="form-group">
+                            <label for="categoria">CATEGORIA</label>
+                            <select name="category"class="form-control" id="categoria" name="categoria">
+                                <option value="0">Selecione uma categoria</option>
+                                <% categories.forEach(function(category){ %>
+                                    <option value="<%= category.id %>"><%= category.titulo %></option>
+                                <% }) %>
+                            </select>  
+
                         <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
                     </form>
                 </div>
@@ -50,6 +62,17 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src= "/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            language:"pt_BR",
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
+
+    
 
 </body>
 
