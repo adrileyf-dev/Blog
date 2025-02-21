@@ -54,25 +54,25 @@ router.post("/categories/delete/:id", (req, res) => {
 });
 
 router.get("/admin/categories/edit/:id", (req, res) => {
-  var id = req.params.id; 
+  var id = req.params.id;
   Categoria.findByPk(id).then(categories => {
-    
+
     if (categories != undefined) {
       res.render("admin/categories/edit", { categories: categories });
     } else {
-     // res.redirect("/admin/categories");
+      // res.redirect("/admin/categories");
     }
   }).catch(error => {
-   /// res.redirect("/admin/categories");
+    /// res.redirect("/admin/categories");
   });
 });
 
 router.post("/categories/update/:id", (req, res) => {
-  var id = req.params.id; 
+  var id = req.params.id;
   var titulo = req.body.titulo;
-  var dtcadastro = req.body.dtcadastro; 
+  var dtcadastro = req.body.dtcadastro;
 
-  Categoria.update({ titulo: titulo, slug: slugify(titulo, { lower: true }),dtcadastro:dtcadastro }, {
+  Categoria.update({ titulo: titulo, slug: slugify(titulo, { lower: true }), dtcadastro: dtcadastro }, {
     where: {
       id: id
     }
@@ -80,8 +80,7 @@ router.post("/categories/update/:id", (req, res) => {
     res.redirect("/admin/categories");
   }).catch(error => {
     res.redirect("/admin/categories");
-  }); 
+  });
 });
-
 
 module.exports = router;

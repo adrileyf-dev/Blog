@@ -6,13 +6,23 @@ const { default: slugify } = require("slugify");
 const e = require("express");
 
 
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles/New", (req, res) => {
   Categoria.findAll().then(categories => {
     res.render("admin/articles/New", { categories: categories });
-
-  })  
-  
+  })    
 });
+
+
+
+router.get("/admin/articles", (req, res) => {
+  Articles.findAll({
+    include: [{ model: Categoria }] // Incluindo a tabela categorias
+  }).then(articles => {
+    res.render("admin/articles/index", { articles: articles }); // Passando a variável articles para a view 
+  });
+});   
+
+
 router.post("/articles/save", (req, res) => {
   var titulo = req.body.descricao;  
   var body = req.body.body; 
@@ -27,7 +37,7 @@ router.post("/articles/save", (req, res) => {
       
     }).then(() => {
       
-      res.redirect("/admin/articles");
+      res.redirect("/admin/articles/New");
     })
   }
 });
