@@ -13,8 +13,7 @@
                             <div class="card-body">
                                 <table class="table table-hover table-hover text-center">
                                     <thead class="thead-dark">
-                                        <tr>
-                                            <th>Id</th>
+                                        <tr>                                          
                                             <th>Titulo</th>
                                             <th>Slug</th>
                                             <th>Categoria</th>
@@ -23,25 +22,14 @@
                                     </thead>
                                     <tbody>
                                         <% articles.forEach(articles=> { %>
-                                            <tr>
+                                            <tr>                                                
+                                                <td><%= articles.titulo %></td>
+                                                <td><%= articles.slug%></td>
+                                                <td><%= articles.categoria.titulo%></td>
                                                 <td>
-                                                    <%= articles.id %>
-                                                </td>
-                                                <td>
-                                                    <%= articles.titulo %>
-                                                </td>
-                                                <td>
-                                                    <%= articles.slug%>
-                                                </td>
-                                                <td>
-                                                    <%= articles.categoria.titulo%>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center gap-2">
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-outline-primary">Editar</button>
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-outline-danger">Excluir</button>
+                                                    <div class="d-flex justify-content-center gap-2"><button type="button"
+                                                         class="btn btn-sm btn-outline-primary">Editar</button> <button type="button"
+                                                         class="btn btn-sm btn-outline-danger" onclick="confirmExclusion('<%= articles.id %>')">Excluir</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -54,7 +42,6 @@
                 </div>
             </div>
             <%- include('../../partials/footer.ejs') %>
-
                 <!-- Modal de Confirmação -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
@@ -67,7 +54,7 @@
                                 </button>
                             </div>
                             <div class="modal-body text-center">
-                                <p class="mb-0">Tem certeza de que deseja excluir esta categoria? Esta ação não pode ser
+                                <p class="mb-0">Tem certeza de que deseja excluir este Artigo? Esta ação não pode ser
                                     desfeita.</p>
                             </div>
                             <div class="modal-footer justify-content-center">
@@ -102,14 +89,14 @@
                                         <button type="submit" class="btn btn-success">Salvar Alterações</button>
                                         <button type="button" class="btn btn-secondary"data-dismiss="modal">Cancelar</button>
                                     </div>
-                                </form>
+                                </form>-
                             </div>
                         </div>
                     </div>
                 </div>
                 <script>
-                    function confirmExclusion(categoryId) {
-                        document.getElementById('deleteForm').action = `/categories/delete/${categoryId}`;
+                    function confirmExclusion(id) {
+                        document.getElementById('deleteForm').action = `/articles/delete/${id}`;
                         $('#deleteModal').modal('show');
                     }
                 </script>

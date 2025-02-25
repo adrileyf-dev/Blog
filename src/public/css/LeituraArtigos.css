@@ -1,0 +1,118 @@
+/* Fonte moderna e profissional */
+body { 
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background: #f8f9fa; 
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Mantém o rodapé fixo no final */
+}
+
+/* Cabeçalho elegante */
+header { 
+    background: #212529; 
+    color: white; 
+    padding: 15px; 
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Barra de navegação refinada */
+nav { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    padding: 12px; 
+    background: #343d40;
+}
+
+nav a { 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+nav a:hover { 
+    background: #a6bb85; 
+    transform: scale(1.1);
+}
+
+/* Banner com tom sofisticado */
+.banner { 
+    text-align: center; 
+    padding: 30px; 
+    background: #1d3557; 
+    color: white;
+}
+
+.banner h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Container principal */
+.container { 
+    max-width: 1100px; 
+    width: 90%;
+    margin: auto; 
+    padding: 20px; 
+    flex-grow: 1; /* Faz o rodapé ficar no final */
+}
+
+/* Grid de posts responsivo */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajusta conforme o espaço */
+    gap: 20px; /* Espaço entre os cards */
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Estilo dos posts */
+.post { 
+    background: #55c286; /* Cor mais suave para destaque */
+    border: 1px solid #0d0d0e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilo dos títulos dos posts */
+.post h2 { 
+    margin-top: 0; 
+    font-size: 1.5rem;
+    color: #1d1d1d;
+}
+
+/* Estilo do texto dos posts */
+.post p { 
+    color: #444; 
+    font-size: 1rem;
+}
+
+/* Rodapé fixo no final */
+footer { 
+    background: #212529; 
+    color: white; 
+    text-align: center; 
+    padding: 15px; 
+    font-size: 0.9rem;
+    margin-top: auto;
+}

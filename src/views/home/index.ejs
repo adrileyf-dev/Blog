@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - Inovação e Tecnologia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Home.css">
+</head>
+<body class="d-flex flex-column">
+
+    <!-- Cabeçalho -->
+    <header class="bg-dark text-white text-center py-3">
+        <h1>TechBlog</h1>
+        <p>As últimas tendências em tecnologia, inovação e gadgets</p>
+    </header>
+
+    <!-- Barra de Navegação -->
+    <%- include('../partials/navbarhome.ejs') %>
+
+    <!-- Container Principal com rolagem interna -->
+    <div class="container-fluid flex-grow-1">
+        <div class="row">
+            <!-- Menu Lateral -->
+            <div class="col-md-3 col-lg-2 p-3 bg-light sidebar">
+                <h3 class="text-center">Categorias</h3>
+                <ul class="list-unstyled">
+                    <% if (categorias && categorias.length > 0) { %>
+                        <% categorias.forEach(function(categoria) { %>
+                            <li>
+                                <a href="/categoria/<%= categoria.slug %>" class="list-group-item list-group-item-action 
+                                    <% if (categoriaSelecionada && categoriaSelecionada.id === categoria.id) { %> 
+                                        active 
+                                    <% } %>">
+                                    <%= categoria.titulo %>
+                                </a>
+                            </li>
+                        <% }) %>
+                    <% } else { %>
+                        <li><p class="text-muted">Nenhuma categoria disponível.</p></li>
+                    <% } %>
+                </ul>
+            </div>
+
+            <!-- Área Principal de Posts -->
+            <div class="col-md-9 col-lg-10 p-4">
+                <div class="posts-wrapper">
+                    <div class="posts-container">
+                        <% if (articles.length > 0) { %>
+                            <% articles.forEach(function(article) { %>
+                                <div class="post mb-4">
+                                    <h3 class="post-date">🗓️ <%= new Date(article.createdAt).toLocaleDateString('pt-BR') %></h3>
+                                    <h2 class="post-title"><%= article.titulo %></h2>
+                                    <p class="post-slug"><%= article.slug %></p>
+                                    <a href="/<%= article.slug %>" class="btn btn-primary">Leia mais</a>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <p class="no-articles">Nenhum artigo disponível no momento.</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 TechBlog - Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

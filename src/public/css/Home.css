@@ -1,0 +1,163 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+}
+
+/* Estilos do Cabeçalho */
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+/* Menu Lateral */
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    z-index: 100;
+}
+
+.sidebar h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Lista de Categorias */
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Estilos da Área Principal de Posts */
+.posts-wrapper {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto; /* Permite rolar a área de posts */
+}
+
+/* Estilos dos Posts */
+.posts-container .post {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.posts-container .post:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.posts-container .post .post-title {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.posts-container .post .post-date {
+    font-size: 16px;
+    color: #999;
+}
+
+.posts-container .post .post-slug {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.posts-container .post .btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.posts-container .post .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Rodapé */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px; /* Adicionado para separar o conteúdo do rodapé */
+    position: relative; /* Fica posicionado no final da página */
+    width: 100%;
+    flex-shrink: 0; /* Impede que o rodapé encolha */
+   
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        padding-top: 10px;
+    }
+
+    .posts-wrapper {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+    .sidebar {
+        display: none; /* Esconde o menu lateral em telas menores */
+    }
+
+    .posts-wrapper {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .posts-container .post {
+        margin-bottom: 15px;
+    }
+}

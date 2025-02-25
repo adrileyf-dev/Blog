@@ -3,8 +3,11 @@ const bodyparser = require("body-parser");
 const coneciton = require("./databse/Conection.js"); 
 const categoriesController = require("./controller/categories/CategoriesController");
 const articlesController = require("./controller/articles/ArticlesController");
+const homeController = require("./controller/home/HomeController");
 const Articles = require("./controller/articles/Article");
 const Categoria = require("./controller/categories/category");
+
+
 
 const app = express();
 app.use(bodyparser.json());
@@ -16,9 +19,27 @@ const PORT = 5555;
 
 app.use("/",categoriesController);
 app.use("/",articlesController);
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.use("/",homeController);
+
+
+app.get("/:slug", (req, res) => {
+  var slug = req.params.slug;
+  Articles.findOne({
+    where: {
+      slug: slug
+    }
+  }).then(article => {
+    if (article != undefined) {
+      res.render("articles", { article: article });
+    } else {
+      res.redirect("/");
+    }
+  });
+
+  
+  
 });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

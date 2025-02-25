@@ -41,6 +41,29 @@ router.post("/articles/save", (req, res) => {
     })
   }
 });
+
+router.post("/articles/delete/:id", (req, res) => {   
+  var id = req.params.id;
+  if (id != undefined) {
+    if (!isNaN(id)) {
+      Articles.destroy({
+        where: {
+          id: id
+        }
+      }).then(() => {
+        res.redirect("/admin/articles");
+      });
+
+    } else {
+      res.redirect("/admin/articles");
+    }
+  } else {
+    res.redirect("/admin/articles");
+  }
+} 
+);
+
+
 /*
 router.get("/admin/categories", (req, res) => {
   Categoria.findAll().then(categories => {
