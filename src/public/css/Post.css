@@ -1,0 +1,66 @@
+/* Estilização da Área de Posts */
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilo de cada Post */
+.post {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.post:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Data do Post */
+.post .post-date {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Título do Post */
+.post .post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Slug do Post */
+.post .post-slug {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Botão Leia Mais */
+.post .btn {
+    margin-top: auto;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.post .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade dos Posts */
+@media (max-width: 992px) {
+    .post {
+        margin-bottom: 20px;
+    }
+}

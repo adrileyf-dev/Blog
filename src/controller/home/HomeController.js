@@ -3,14 +3,72 @@ const router = express.Router();
 const Articles = require("../articles/Article");
 const Categoria = require("../categories/category");  // Importa o modelo Categoria
 
-const { default: slugify } = require("slugify");
+
+router.get("/", (req, res) => {
+  Articles.findAll({
+    order: [
+      ["id", "DESC"]
+    ]
+  }).then(articles => {
+    Categoria.findAll().then(categories => {
+      res.render("home/index", { articles: articles, categories: categories });
+    });
+  });   
+}
+
+);
+ 
+ 
+
+// rota
+router.get("/:slug", (req, res) => {
+  var slug = req.params.slug;
+  Articles.findOne({
+    where: {
+      slug: slug
+    }
+  }).then(article => {
+    if (article != undefined) {
+      res.render("articles", { article: article });
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+router.get("/category/:id", (req, res) => {
+  var categoryId = req.params.id;
+  Categoria.findByPk(categoryId, {
+    include: [{ model: Articles }]
+  }).then(category => {
+    if (category != undefined) {
+      Categoria.findAll().then(categories => {
+        res.render("home/index", { articles: category.articles, categories: categories });
+      });
+    } else {
+      res.redirect("/");
+    }
+  }).catch(error => {
+    console.error(error);
+    res.redirect("/");
+  });
+});
+
+
+module.exports = router;
+
+
+
+
+// para o arquivo src/controller/home/HomeController.js
+/*  
 router.get("/", (req, res) => {
   // Obtenha a categoria selecionada da URL ou de outro lugar
-  const categoriaSlug = req.query.categoriaSlug; // ou algo como req.params.categoriaSlug
-
+  const idcategoria = req.query.id; // ou algo como req.params.categoriaSlug
+  console.log(idcategoria);  // Verifique se a categoria foi passada corretamente
   // Se você estiver buscando artigos por categoria:
   let query = {};
-  if (categoriaSlug) {
+  if (idcategoria) {
       query.slug = categoriaSlug; // Filtra os artigos pela categoria
   }
 
@@ -21,19 +79,17 @@ router.get("/", (req, res) => {
   ])
   .then(([categorias, articles]) => {
       // Encontrar a categoria selecionada, se houver
-      const categoriaSelecionada = categorias.find(c => c.slug === categoriaSlug);
+      //const categoriaSelecionada = categorias.find(c => c.slug === categoriaSlug);     
 
       // Renderize a página com as categorias e artigos
       res.render("home/index", { 
           articles: articles, 
-          categorias: categorias, 
-          categoriaSelecionada: categoriaSelecionada 
+          categorias: categorias 
+        //  categoriaSelecionada: categoriaSelecionada 
       });
   })
   .catch(error => {
       console.error(error);
       res.status(500).send("Erro ao carregar os dados.");
   });
-});
-
-module.exports = router;
+});*/

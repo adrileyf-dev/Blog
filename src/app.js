@@ -21,7 +21,7 @@ app.use("/",categoriesController);
 app.use("/",articlesController);
 app.use("/",homeController);
 
-
+/*
 app.get("/:slug", (req, res) => {
   var slug = req.params.slug;
   Articles.findOne({
@@ -38,7 +38,7 @@ app.get("/:slug", (req, res) => {
 
   
   
-});
+});*/
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

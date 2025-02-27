@@ -6,9 +6,9 @@
     <title>TechBlog - Inovação e Tecnologia</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/Home.css">
+    <link rel="stylesheet" href="/css/post.css">
 </head>
 <body class="d-flex flex-column">
-
     <!-- Cabeçalho -->
     <header class="bg-dark text-white text-center py-3">
         <h1>TechBlog</h1>
@@ -18,20 +18,19 @@
     <!-- Barra de Navegação -->
     <%- include('../partials/navbarhome.ejs') %>
 
+
     <!-- Container Principal com rolagem interna -->
-    <div class="container-fluid flex-grow-1">
+
+
+    <div class="container-fluid">
         <div class="row">
-            <!-- Menu Lateral -->
             <div class="col-md-3 col-lg-2 p-3 bg-light sidebar">
                 <h3 class="text-center">Categorias</h3>
                 <ul class="list-unstyled">
-                    <% if (categorias && categorias.length > 0) { %>
-                        <% categorias.forEach(function(categoria) { %>
+                    <% if (categories && categories.length > 0) { %>
+                        <% categories.forEach(function(categoria) { %>
                             <li>
-                                <a href="/categoria/<%= categoria.slug %>" class="list-group-item list-group-item-action 
-                                    <% if (categoriaSelecionada && categoriaSelecionada.id === categoria.id) { %> 
-                                        active 
-                                    <% } %>">
+                                <a href="/category/<%= categoria.id %>" class="list-group-item list-group-item-action">                                     
                                     <%= categoria.titulo %>
                                 </a>
                             </li>
@@ -40,30 +39,37 @@
                         <li><p class="text-muted">Nenhuma categoria disponível.</p></li>
                     <% } %>
                 </ul>
-            </div>
-
+            </div>       
             <!-- Área Principal de Posts -->
+
             <div class="col-md-9 col-lg-10 p-4">
                 <div class="posts-wrapper">
-                    <div class="posts-container">
+                    <div class="posts-container row">
                         <% if (articles.length > 0) { %>
                             <% articles.forEach(function(article) { %>
-                                <div class="post mb-4">
-                                    <h3 class="post-date">🗓️ <%= new Date(article.createdAt).toLocaleDateString('pt-BR') %></h3>
-                                    <h2 class="post-title"><%= article.titulo %></h2>
-                                    <p class="post-slug"><%= article.slug %></p>
-                                    <a href="/<%= article.slug %>" class="btn btn-primary">Leia mais</a>
+                                <div class="col-sm-12 col-md-6 col-lg-3 d-flex"> <!-- Define o tamanho das colunas -->
+                                    <div class="post flex-fill">
+                                        <h3 class="post-date">🗓️ <%= new Date(article.createdAt).toLocaleDateString('pt-BR') %></h3>
+                                        <h2 class="post-title"><%= article.titulo %></h2>
+                                        <p class="post-slug"><%= article.slug %></p>
+                                        <a href="/<%= article.slug%>" class="btn btn-primary mt-auto">Leia mais</a>
+                                    </div>
                                 </div>
                             <% }) %>
                         <% } else { %>
-                            <p class="no-articles">Nenhum artigo disponível no momento.</p>
+                        <div class="col-12">
+                            <div class="alert alert-warning text-center" role="alert">
+                                Nenhum artigo disponível no momento.
+                            </div>
+                        </div>
+                           
                         <% } %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!-- Rodapé -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 TechBlog - Todos os direitos reservados.</p>
