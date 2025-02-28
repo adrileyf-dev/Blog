@@ -23,8 +23,7 @@
                             <tbody>
                                 <% categories.forEach(category => { %>
                                     <tr>
-                                        <td><%= category.titulo %></td>
-                                        <td><%= category.dtcadastro %></td>
+                                        <td><%= category.titulo %></td>                                       
 
                                        <td><%= new Date(category.dtcadastro).toLocaleDateString('pt-BR') %></td>
                                         <td><%= category.slug %></td>

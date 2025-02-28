@@ -42,17 +42,18 @@
             </div>       
             <!-- Área Principal de Posts -->
 
-            <div class="col-md-9 col-lg-10 p-4">
+            <div class="col-md-9 col-lg-10 p-3">
                 <div class="posts-wrapper">
-                    <div class="posts-container row">
+                    <div class="posts-container">
                         <% if (articles.length > 0) { %>
                             <% articles.forEach(function(article) { %>
                                 <div class="col-sm-12 col-md-6 col-lg-3 d-flex"> <!-- Define o tamanho das colunas -->
-                                    <div class="post flex-fill">
+                                    <div class="post flex-column d-flex">
                                         <h3 class="post-date">🗓️ <%= new Date(article.createdAt).toLocaleDateString('pt-BR') %></h3>
                                         <h2 class="post-title"><%= article.titulo %></h2>
                                         <p class="post-slug"><%= article.slug %></p>
-                                        <a href="/<%= article.slug%>" class="btn btn-primary mt-auto">Leia mais</a>
+                                        <a href="/artigos/<%= article.id%>" class="btn btn-primary mt-auto">Leia mais</a>
+                                        <!-- Área Principal de Posts -->                                        
                                     </div>
                                 </div>
                             <% }) %>
@@ -69,12 +70,47 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editModalLabel">Editar Categoria</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" method="POST" >
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <input type="text" class="form-control" id="categoria" name="titulo" placeholder="Digite a categoria" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Cadastro">Data de Cadastro</label>
+                            <input type="date" class="form-control" id="data" name="dtcadastro" required>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(categoryId,titulo,dtcadastro) {            
+            document.getElementById('editForm').action = `/categories/update/${categoryId}`;
+            document.getElementById('categoria').value = titulo;
+            document.getElementById('data').value = dtcadastro;
+            $('#editModal').modal('show');
+        }
+    </script>
     
     <!-- Rodapé -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 TechBlog - Todos os direitos reservados.</p>
-    </footer>
-
+    <%- include('../partials/footer.ejs') %>
     <!-- Scripts do Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

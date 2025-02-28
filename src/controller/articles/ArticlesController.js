@@ -63,6 +63,39 @@ router.post("/articles/delete/:id", (req, res) => {
 } 
 );
 
+router.get("/admin/articles/edit/:id", (req, res) => { 
+  var id = req.params.id;
+  Articles.findByPk(id).then(articles => {
+    if(articles!= undefined){
+      Categoria.findAll().then(categories => {
+        res.render("admin/articles/edit", { categories: categories,articles:articles });
+      });
+       
+    }else{
+
+    }  
+  }).catch(error => {
+   // res.redirect("/admin/articles");
+  }) 
+}); 
+
+
+router.post("/articles/update/:id", (req, res) => {
+  var id = req.params.id;
+  var titulo = req.body.descricao;
+  var body = req.body.body;
+  var category = req.body.category;
+  Articles.update({ titulo: titulo, slug: slugify(titulo, { lower: true }),body:body,categoryId:category }, {
+    where: {
+      id: id
+    }
+  }).then(() => {
+    res.redirect("/admin/articles");
+  }).catch(error => {
+    res.redirect("/admin/articles");
+  });
+}
+);
 
 /*
 router.get("/admin/categories", (req, res) => {

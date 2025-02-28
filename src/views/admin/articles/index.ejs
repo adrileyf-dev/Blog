@@ -10,6 +10,9 @@
                             <div class="card-header text-center bg-dark text-white">
                                 <h3 class="mb-0">Gerenciamento de Artigos</h3>
                             </div>
+
+
+                            
                             <div class="card-body">
                                 <table class="table table-hover table-hover text-center">
                                     <thead class="thead-dark">
@@ -27,9 +30,10 @@
                                                 <td><%= articles.slug%></td>
                                                 <td><%= articles.categoria.titulo%></td>
                                                 <td>
-                                                    <div class="d-flex justify-content-center gap-2"><button type="button"
-                                                         class="btn btn-sm btn-outline-primary">Editar</button> <button type="button"
-                                                         class="btn btn-sm btn-outline-danger" onclick="confirmExclusion('<%= articles.id %>')">Excluir</button>
+                                                    <div class="d-flex justify-content-center gap-2">
+                                                        <a href="articles/edit/<%= articles.id %>" class="btn btn-sm btn-outline-primary">Editars</a>                                                      
+
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmExclusion('<%= articles.id %>')">Excluir</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -67,14 +71,7 @@
                     </div>
                 </div>
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="editModalLabel">Editar Categoria</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                    
                             <div class="modal-body">
                                 <form id="editForm" method="POST">
                                     <div class="form-group">
@@ -102,11 +99,10 @@
                 </script>
                 <!-- Modal de Edição -->
                 <script>
-                    function openEditModal(categoryId, titulo, dtcadastro) {
-                        document.getElementById('editForm').action = `/categories/update/${categoryId}`;
-                        document.getElementById('categoria').value = titulo;
-                        document.getElementById('data').value = dtcadastro;
-                        $('#editModal').modal('show');
+                    function openEditModal(articlesid) {
+                       // document.getElementById('editForm').action = `/admin/articles/edit/${articlesid}`;                      
+                       alert(articlesid);
+                       
                     }
                 </script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

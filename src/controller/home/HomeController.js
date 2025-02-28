@@ -5,29 +5,23 @@ const Categoria = require("../categories/category");  // Importa o modelo Catego
 
 
 router.get("/", (req, res) => {
-  Articles.findAll({
-    order: [
-      ["id", "DESC"]
-    ]
-  }).then(articles => {
+  Articles.findAll(
+    ).then(articles => {
     Categoria.findAll().then(categories => {
       res.render("home/index", { articles: articles, categories: categories });
     });
   });   
-}
+  });
 
-);
- 
- 
-
+  
 // rota
-router.get("/:slug", (req, res) => {
-  var slug = req.params.slug;
-  Articles.findOne({
-    where: {
-      slug: slug
-    }
-  }).then(article => {
+
+
+
+router.get("/artigos/:id", (req, res) => {
+  var idArticles =parseInt(req.params.id, 10);
+
+  Articles.findByPk(idArticles).then(article => {
     if (article != undefined) {
       res.render("articles", { article: article });
     } else {

@@ -64,16 +64,16 @@ header {
 
 
 /* Rodapé */
-footer {
-    background-color: #343a40;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    margin-top: 20px; /* Adicionado para separar o conteúdo do rodapé */
-    position: relative; /* Fica posicionado no final da página */
-    width: 100%;
-    flex-shrink: 0; /* Impede que o rodapé encolha */
+/* Rodapé fixo no final */
+footer { 
+    background: #212529; 
+    color: white; 
+    text-align: center; 
+    padding: 15px; 
+    font-size: 0.9rem;
+    margin-top: auto;
 }
+
 
 /* Responsividade */
 @media (max-width: 992px) {
@@ -113,19 +113,6 @@ footer {
     }
 }
 
-.linha-block{
-	display:block;
-	color:#333;
-	border:1px solid #ddd;
-	padding:20px;
-	margin-bottom:20px;
-	height:110px;
-}
-.linha-block:hover{
-	color:#555;
-	text-decoration:none;
-	background-color:#f5f5f5;
-}
 .card-body{
 	text-align:center;
 }

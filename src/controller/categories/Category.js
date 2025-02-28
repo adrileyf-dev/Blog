@@ -17,8 +17,8 @@ const Categoria = coneciton.define('categorias', {
     },
 });  
 
-/*
+ /*
 Categoria.sync({force:true}).then(()=>{
     console.log("Tabela Criado com Sucesso! ")
-}); */
+}); */ 
 module.exports = Categoria;
