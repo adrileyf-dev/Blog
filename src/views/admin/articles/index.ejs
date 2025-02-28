@@ -1,110 +1,108 @@
-<body class="bg-light">
-    <%- include('../../partials/header.ejs') %>
-        <%- include('../../partials/navbar.ejs') %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - Inovação e Tecnologia</title>
+    
+    <!-- Bootstrap & CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Home.css">
+    
+</head>
+<body class="d-flex flex-column min-vh-100">
 
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <a href="/admin/articles/new" class="btn btn-primary btn-sm mb-3">+ Novo Artigo</a>
-                        <div class="card">
-                            <div class="card-header text-center bg-dark text-white">
-                                <h3 class="mb-0">Gerenciamento de Artigos</h3>
-                            </div>
+    <!-- Cabeçalho -->
+    <header class="bg-dark text-white text-center py-3">
+        <h1>TechBlog</h1>
+        <p>As últimas tendências em tecnologia, inovação e gadgets</p>
+    </header>
 
+    <!-- Navbar -->
+    
+    <%- include('../../partials/navbar.ejs') %>
 
-                            
-                            <div class="card-body">
-                                <table class="table table-hover table-hover text-center">
-                                    <thead class="thead-dark">
-                                        <tr>                                          
-                                            <th>Titulo</th>
-                                            <th>Slug</th>
-                                            <th>Categoria</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% articles.forEach(articles=> { %>
-                                            <tr>                                                
-                                                <td><%= articles.titulo %></td>
-                                                <td><%= articles.slug%></td>
-                                                <td><%= articles.categoria.titulo%></td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center gap-2">
-                                                        <a href="articles/edit/<%= articles.id %>" class="btn btn-sm btn-outline-primary">Editars</a>                                                      
-
-                                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmExclusion('<%= articles.id %>')">Excluir</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <% }) %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <!-- Conteúdo Principal -->
+    <main class="container mt-5 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <a href="/admin/articles/new" class="btn btn-primary btn-sm mb-3">+ Novo Artigo</a>
+                <div class="card">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h3 class="mb-0">Informações</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover text-left">
+                            <thead>
+                                <tr>
+                                    <th>TITULO</th>                                   
+                                    <th>CATEGORIA</th>
+                                    <th>AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% response.articles.forEach(article => { %>
+                                    <tr>
+                                        <td><%= article.titulo %></td>
+                                         
+                                        <td><%= article.categoria ? article.categoria.titulo : 'Sem categoria' %></td>
+                                        <td>                                            
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-sm btn-outline-primary">
+                                                      Editar
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-outline-danger" 
+                                                    onclick="confirmExclusion('<%= article.id %>')">
+                                                    Excluir
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <%- include('../../partials/footer.ejs') %>
-                <!-- Modal de Confirmação -->
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-danger text-white">
-                                <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <p class="mb-0">Tem certeza de que deseja excluir este Artigo? Esta ação não pode ser
-                                    desfeita.</p>
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <form id="deleteForm" method="POST" style="display: inline;">
-                                    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <%- include('../../partials/footer.ejs') %>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                    
-                            <div class="modal-body">
-                                <form id="editForm" method="POST">
-                                    <div class="form-group">
-                                        <label for="categoria">Categoria</label>
-                                        <input type="text" class="form-control" id="categoria" name="titulo" placeholder="Digite a categoria" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Cadastro">Data de Cadastro</label>
-                                        <input type="date" class="form-control" id="data" name="dtcadastro" required>
-                                    </div>
-                                    <div class="form-group text-center">
-                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
-                                        <button type="button" class="btn btn-secondary"data-dismiss="modal">Cancelar</button>
-                                    </div>
-                                </form>-
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body text-center">
+                    <p>Tem certeza de que deseja excluir este Artigo? Esta ação não pode ser desfeita.</p>
                 </div>
-                <script>
-                    function confirmExclusion(id) {
-                        document.getElementById('deleteForm').action = `/articles/delete/${id}`;
-                        $('#deleteModal').modal('show');
-                    }
-                </script>
-                <!-- Modal de Edição -->
-                <script>
-                    function openEditModal(articlesid) {
-                       // document.getElementById('editForm').action = `/admin/articles/edit/${articlesid}`;                      
-                       alert(articlesid);
-                       
-                    }
-                </script>
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form id="deleteForm" method="POST">
+                        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Scripts -->
+    <script>
+        function confirmExclusion(id) {
+            document.getElementById('deleteForm').action = `/articles/delete/${id}`;
+            $('#deleteModal').modal('show');
+        }
+    </script>
+    <!-- jQuery & Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+</html>

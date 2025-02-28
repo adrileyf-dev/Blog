@@ -13,14 +13,14 @@ router.get("/admin/articles/New", (req, res) => {
 });
 
 
-
+/*
 router.get("/admin/articles", (req, res) => {
   Articles.findAll({
     include: [{ model: Categoria }] // Incluindo a tabela categorias
   }).then(articles => {
     res.render("admin/articles/index", { articles: articles }); // Passando a variável articles para a view 
   });
-});   
+});   */
 
 
 router.post("/articles/save", (req, res) => {
@@ -96,6 +96,60 @@ router.post("/articles/update/:id", (req, res) => {
   });
 }
 );
+
+router.get("/admin/articles/page/:num",(req,res)=>{
+  var page = req.params.num;
+
+  
+     var offset = 0;
+     if(isNaN(page)|| page == 1){
+      offset = 0;
+     }else{
+      offset = parseInt(page)*4;      
+     } 
+   
+Articles.findAndCountAll({
+  limit: 4,
+  offset: offset,
+  include: [{ model: Categoria }]
+}).then(result => {
+  var next = offset + 4 < result.count;
+  var response = {
+    page: parseInt(page),
+    next: next,
+    articles: result.rows
+  };
+  Categoria.findAll().then(categories => {
+    res.render("admin/articles/index", { response: response, categories: categories });
+  });
+}).catch(error => {
+  res.status(500).json({ error: error.message });
+});
+});
+
+
+
+
+
+/*
+Nova paginação 
+Articles.findAndCountAll({
+  limit: 4,
+  offset: offset,
+  include: [{ model: Categoria }]
+  }).then(result => {
+  var next = offset + 4 < result.count;
+  var response = {
+    page: page,
+    next: next,
+    articles: result.rows
+  };
+  res.render("admin/articles/index", { response: response, categories: categories });
+  }).catch(error => {
+  res.status(500).json({ error: error.message });
+  });
+});
+*/
 
 /*
 router.get("/admin/categories", (req, res) => {
