@@ -77,9 +77,9 @@ router.post("/categories/update/:id", (req, res) => {
       id: id
     }
   }).then(() => {
-    res.redirect("/admin/categories");
+  // res.redirect("/admin/categories");
   }).catch(error => {
-    res.redirect("/admin/categories");
+   // res.redirect("/admin/categories");
   });
 });
 

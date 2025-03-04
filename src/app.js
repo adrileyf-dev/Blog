@@ -4,8 +4,7 @@ const coneciton = require("./databse/Conection.js");
 const categoriesController = require("./controller/categories/CategoriesController");
 const articlesController = require("./controller/articles/ArticlesController");
 const homeController = require("./controller/home/HomeController");
-const Articles = require("./controller/articles/Article");
-const Categoria = require("./controller/categories/category");
+const usersController = require("./controller/User/usersController");
 
 
 
@@ -20,6 +19,10 @@ const PORT = 5555;
 app.use("/",categoriesController);
 app.use("/",articlesController);
 app.use("/",homeController);
+app.use("/",usersController);
+
+app.use
+ 
 
 /*
 app.get("/:slug", (req, res) => {

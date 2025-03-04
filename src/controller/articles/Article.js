@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
-const coneciton = require('..//../databse/Conection');
-const Categoria = require('../categories/category');
+const coneciton = require('../../databse/Conection');
+const Categoria = require('../categories/Category');
+
 
 const Articles = coneciton.define('articles', { 
     titulo: {
